@@ -26,11 +26,14 @@ void Set::addNewElem(int val) {
 //создание множества    num - 4 или 7
 Set Set::createSet(int size, int min, int max, int num) {
 	Set new_set = *new Set();
-	while (new_set.sizeOfSet() < size) {
+	int s = 0;
+	while (s < size) {
 		int temp = min + rand() % (max - min + 1);
-		if (temp % 10 < num) {
+		if (temp % 10 < num && !new_set.checkElemInSet(temp)) {
 			new_set.addNewElem(temp);
+			s++;
 		}
+		
 	}
 	return new_set;
 }
