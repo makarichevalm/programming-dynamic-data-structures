@@ -27,15 +27,13 @@ int main()
     cout << endl;
     cout << "-------------------------------- Лабораторная работа 2 ------------------------------" << endl;
     cout << "Проверка на принадлежность множества А множеству В:" << endl << isSubsetAB(setA, setB) << endl;
-    cout << "Проверка на равенство множеств:" << endl << isEquallyAB(setA, setB) << endl;
+    cout << "Проверка на равенство множеств AB:" << endl << isEquallyAB(setA, setB) << endl;
+    cout << "Проверка на принадлежность множества А множеству A:" << endl << isSubsetAB(setA, setA) << endl;
+    cout << "Проверка на равенство множеств AA:" << endl << isEquallyAB(setA, setA) << endl;
     cout << "Объединение множеств: " << endl << printSet(consolidationAB(setA, setB), " , ") << endl;
-    cout << "Вывод элементов множества А: " << endl << printSet(setA, ", ") << endl;
     cout << "Пересечение множеств:" << endl << printSet(intersectionAB(setA, setB), " , ") << endl;
     cout << "Разность А - В:" << endl << printSet(differenceAB(setA, setB), " , ") << endl;
     cout << "Разность В - А:" << endl << printSet(differenceAB(setB, setA), " , ") << endl;
     cout << "Симметричная разность:" << endl << printSet(symmetricDifferenceAB(setA, setB), " , ") << endl;
     cout << endl;
-    cout << "Проверка на принадлежность множества А множеству В:" << endl << isSubsetAB(setA, setA) << endl;
-    cout << "Проверка на равенство множеств:" << endl << isEquallyAB(setA, setA) << endl;
-
 }

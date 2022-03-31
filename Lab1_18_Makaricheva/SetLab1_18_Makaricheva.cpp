@@ -1,13 +1,16 @@
 #include "SetLab1_18_Makaricheva.h"
+
 //создание пустого множества
 Elem* createEmptySet() {
 	Elem* first = nullptr;
 	return first;
 }
+
 //проверка на пустоту
 bool checkEmpty(Elem* first) {
 	return first == nullptr;
 }
+
 //проверка принадлежности элем мн-ву
 bool checkElemInSet(Elem* first, int val) {
 	if (checkEmpty(first)) return false;
@@ -16,11 +19,11 @@ bool checkElemInSet(Elem* first, int val) {
 		temp = temp->next;
 	}
 	return temp->value == val;
-
 }
+
 // добавление нового элемента в начало списка
 Elem* addNewElem(Elem*& first, int val) {
-	if (!checkElemInSet(first, val)) {   //Elem*& - ссылка на указатель, чтобы изменени€ примен€лись к исходному указателю
+	if (!checkElemInSet(first, val)) {
 		Elem* new_elem = new Elem;
 		new_elem->value = val;
 		new_elem->next = first;
@@ -28,6 +31,7 @@ Elem* addNewElem(Elem*& first, int val) {
 	}
 	return first;
 }
+
 //создание множества
 Elem* createSet(int size, int min, int max, int num) {
 	Elem* new_set = createEmptySet();
@@ -41,6 +45,7 @@ Elem* createSet(int size, int min, int max, int num) {
 	}
 	return new_set;
 }
+
 //мощность множ-ва
 int sizeOfSet(Elem* first) {
 	int size = 0;
@@ -54,6 +59,7 @@ int sizeOfSet(Elem* first) {
 	return size;
 
 }
+
 //вывод множества
 string printSet(Elem* first, string symb) {
 	if (checkEmpty(first))
@@ -67,6 +73,7 @@ string printSet(Elem* first, string symb) {
 	result += to_string(temp->value);
 	return result;
 }
+
 // удаление мн-ва
 Elem* deleteSet(Elem*& first) {
 	Elem* cur = first;
@@ -78,6 +85,7 @@ Elem* deleteSet(Elem*& first) {
 	first = nullptr;
 	return first;
 }
+
 //проверка: A €вл€етс€ подмножеством множества B
 bool isSubsetAB(Elem* firstA, Elem* firstB) {
 	if (checkEmpty(firstA))
@@ -92,10 +100,12 @@ bool isSubsetAB(Elem* firstA, Elem* firstB) {
 	}
 	return true;
 }
+
 // проверка на равенство множеств A и B
 bool isEquallyAB(Elem* firstA, Elem* firstB) {
 	return (isSubsetAB(firstB, firstA) && isSubsetAB(firstA, firstB));
 }
+
 // объединение множеств
 Elem* consolidationAB(Elem* firstA, Elem* firstB) {
 	if (checkEmpty(firstA))// объединение мн ј с пустым = мн ј
@@ -111,7 +121,6 @@ Elem* consolidationAB(Elem* firstA, Elem* firstB) {
 		temp = temp->next;
 	}
 	return firstC;
-
 }
 
 //пересечение множеств
@@ -145,6 +154,7 @@ Elem* differenceAB(Elem* firstA, Elem* firstB) {
 	}
 	return firstC;
 }
+
 //симметрична€ разность множеств
 Elem* symmetricDifferenceAB(Elem* firstA, Elem* firstB) {
 	return differenceAB(consolidationAB(firstA, firstB), intersectionAB(firstA, firstB));
