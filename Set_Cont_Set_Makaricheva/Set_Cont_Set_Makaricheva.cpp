@@ -1,4 +1,5 @@
 ﻿#include "Set_Cont_Set.h"
+using namespace Set5;
 
 int main()
 {

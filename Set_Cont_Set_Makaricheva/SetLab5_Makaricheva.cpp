@@ -1,4 +1,5 @@
 #include "Set_Cont_Set.h"
+using namespace Set5;
 
 Set::Set() {
 	mySet = set<int>();
@@ -33,7 +34,6 @@ Set Set::createSet(int size, int min, int max, int num) {
 			new_set.addNewElem(temp);
 			s++;
 		}
-		
 	}
 	return new_set;
 }
@@ -92,7 +92,6 @@ Set Set::intersectionAB(Set firstA, Set firstB) {
 	if (firstA.checkEmpty() || firstB.checkEmpty())
 		return createEmptySet();
 	Set firstC = createEmptySet();
-
 	for (auto i = firstA.mySet.begin(); i != firstA.mySet.end(); i++) {
 		if (firstB.checkElemInSet(*i)) {
 			firstC.addNewElem(*i);
