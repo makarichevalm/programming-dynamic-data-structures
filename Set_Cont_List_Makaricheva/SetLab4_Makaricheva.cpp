@@ -1,16 +1,20 @@
 #include "Set_Cont_List.h"
+using namespace Set4;
 
 Set:: Set() {
 	myList = list<int>();
 }
+
 Set Set::createEmptySet() {
 	Set* newSet = new Set();
 	return *newSet;
 }
+
 //проверка на пустоту
 bool Set::checkEmpty() {
 	return myList.empty();
 }
+
 //проверка принадлежности элем мн-ву
 bool Set::checkElemInSet(int val) {
 	if (checkEmpty()) return false;
@@ -19,8 +23,8 @@ bool Set::checkElemInSet(int val) {
 			return true;
 	}
 	 return false;
-
 }
+
 // добавление нового элемента
 void Set::addNewElem(int val) {
 	if (!checkElemInSet(val)) {
@@ -28,6 +32,7 @@ void Set::addNewElem(int val) {
 	}
 	return;
 }
+
 //создание множества    num - 4 или 7
 Set Set::createSet(int size, int min, int max, int num) {
 	Set new_set = *new Set();
@@ -41,10 +46,12 @@ Set Set::createSet(int size, int min, int max, int num) {
 	}
 	return new_set;
 }
+
 //мощность множ-ва
 int Set::sizeOfSet() {
 	return myList.size();
 }
+
 // вывод множества 
 string Set::printSet(const string symb) {
 	if (checkEmpty())
@@ -57,27 +64,30 @@ string Set::printSet(const string symb) {
 	}
 	return result;
 }
+
 // удаление мн-ва
 void Set::deleteSet() {
 	myList.clear();
 }
+
 //проверка: A является подмножеством множества B
 bool Set::isSubsetAB(Set firstA, Set firstB) {
 	if (firstA.checkEmpty())
 		return true;
 	if (firstA.sizeOfSet() > firstB.sizeOfSet())
 		return false;
-	
 	for (auto i = firstA.myList.begin(); i != firstA.myList.end(); i++) {
 		if (!firstB.checkElemInSet(*i))
 			return false;
 	}
 	return true;
 }
+
 // проверка на равенство множеств A и B
 bool Set::isEquallyAB(Set firstA, Set firstB) {
 	return (isSubsetAB(firstB, firstA) && isSubsetAB(firstA, firstB));
 }
+
 // объединение множеств
 Set Set::consolidationAB(Set firstA, Set firstB) {
 	if (firstA.checkEmpty())// объединение мн А с пустым = мн А
@@ -106,6 +116,7 @@ Set Set::intersectionAB(Set firstA, Set firstB) {
 	}
 	return firstC;
 }
+
 // разность множеств
 Set Set::differenceAB(Set firstA, Set firstB) {
 	Set firstC = createEmptySet();
@@ -120,6 +131,7 @@ Set Set::differenceAB(Set firstA, Set firstB) {
 	}
 	return firstC;
 }
+
 //симметричная разность множеств
 Set Set::symmetricDifferenceAB(Set firstA, Set firstB) {
 	return differenceAB(consolidationAB(firstA, firstB), intersectionAB(firstA, firstB));
