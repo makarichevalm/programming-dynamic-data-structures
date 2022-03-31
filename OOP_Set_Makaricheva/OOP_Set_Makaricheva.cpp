@@ -1,5 +1,5 @@
 ﻿#include "Set_Makaricheva.h"
-
+using namespace Set3;
 
 int main()
 {

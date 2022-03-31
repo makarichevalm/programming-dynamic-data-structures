@@ -1,22 +1,24 @@
 #include "Set_Makaricheva.h"
+using namespace Set3;
+
 Elem* Set::getElem() {
 	return first;
 }
 Set::Set() {
 	first = nullptr;
 }
-/*Set::~Set() {
-	deleteSet();
-}*/
+
 //создание пустого множества
 Set Set::createEmptySet() {
 	Set *newSet = new Set();
 	return *newSet;
 }
+
 //проверка на пустоту
 bool Set::checkEmpty() {
 	return first == nullptr;
 }
+
 //проверка принадлежности элем мн-ву
 bool Set::checkElemInSet(int val) {
 	if (checkEmpty()) return false;
@@ -25,11 +27,11 @@ bool Set::checkElemInSet(int val) {
 		temp = temp->next;
 	}
 	return temp->value == val;
-
 }
+
 // добавление нового элемента в начало списка
 void Set:: addNewElem(int val) {
-	if (!checkElemInSet(val)) {   //Elem*& - ссылка на указатель, чтобы изменени€ примен€лись к исходному указателю
+	if (!checkElemInSet(val)) {
 		Elem* new_elem = new Elem;
 		new_elem->value = val;
 		new_elem->next = first;
@@ -37,9 +39,10 @@ void Set:: addNewElem(int val) {
 	}
 	return;
 }
+
 //создание множества
 Set Set:: createSet(int size, int min, int max, int num) {
-	Set new_set = *new Set();//createEmptySet();
+	Set new_set = *new Set();
 	int s = 0;
 	while (s < size) {
 		int temp = min + rand() % (max - min + 1);
@@ -50,6 +53,7 @@ Set Set:: createSet(int size, int min, int max, int num) {
 	}
 	return new_set;
 }
+
 //мощность множ-ва
 int Set::sizeOfSet() {
 	int size = 0;
@@ -61,22 +65,22 @@ int Set::sizeOfSet() {
 		temp = temp->next;
 	}
 	return size;
-
 }
+
 //вывод множества
-string Set:: printSet(const string& symb) {
+string Set:: printSet(const string symb) {
 	if (this->checkEmpty())
 		return "Set is empty!";
 	Elem* temp = first;
 	string result;
 	while (temp->next) {
-		
 		result += to_string(temp->value) + symb;
 		temp = temp->next;
 	}
 	result += to_string(temp->value);
 	return result;
 }
+
 // удаление мн-ва
 void Set:: deleteSet() {
 	Elem* cur = first;
@@ -87,6 +91,7 @@ void Set:: deleteSet() {
 	}
 	first = nullptr;
 }
+
 //проверка: A €вл€етс€ подмножеством множества B
 bool Set::isSubsetAB(Set firstA, Set firstB) {
 	if (firstA.checkEmpty())
@@ -101,13 +106,15 @@ bool Set::isSubsetAB(Set firstA, Set firstB) {
 	}
 	return true;
 }
+
 // проверка на равенство множеств A и B
 bool Set::isEquallyAB(Set firstA, Set firstB) {
 	return (isSubsetAB(firstB, firstA) && isSubsetAB(firstA, firstB));
 }
+
 // объединение множеств
 Set Set::consolidationAB(Set firstA, Set firstB) {
-	if (firstA.checkEmpty())// объединение мн ј с пустым = мн ј
+	if (firstA.checkEmpty())
 		return firstB;
 	if (firstB.checkEmpty())
 		return firstA;
@@ -122,6 +129,7 @@ Set Set::consolidationAB(Set firstA, Set firstB) {
 	return firstC;
 
 }
+
 //пересечение множеств
 Set Set::intersectionAB(Set firstA, Set firstB) {
 	if (firstA.checkEmpty() || firstB.checkEmpty())
@@ -153,6 +161,7 @@ Set Set::differenceAB(Set firstA, Set firstB) {
 	}
 	return firstC;
 }
+
 //симметрична€ разность множеств
 Set Set::symmetricDifferenceAB(Set firstA, Set firstB) {
 	return differenceAB(consolidationAB(firstA, firstB), intersectionAB(firstA, firstB));
