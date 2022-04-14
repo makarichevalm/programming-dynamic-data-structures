@@ -21,6 +21,7 @@ bool Set::checkElemInSet(int val) {
 }
 // добавление нового элемента
 void Set::addNewElem(int val) {
+	if(!checkElemInSet(val))
 		mySet.insert(val);
 	return;
 }
@@ -30,7 +31,7 @@ Set Set::createSet(int size, int min, int max, int num) {
 	int s = 0;
 	while (s < size) {
 		int temp = min + rand() % (max - min + 1);
-		if (temp % 10 < num && !new_set.checkElemInSet(temp)) {
+		if (temp % 10 < num) {
 			new_set.addNewElem(temp);
 			s++;
 		}
